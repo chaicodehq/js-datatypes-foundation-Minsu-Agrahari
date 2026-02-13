@@ -61,7 +61,7 @@ export function getAffordableItems(items, maxPrice) {
   // Your code here
 
   if(typeof maxPrice !== "number") return [];
-  if(!Arrays.isArray(items)) return[];
+  if(!Array.isArray(items)) return[];
 
   return items.filter(item => (item.price <= maxPrice));
 }
@@ -77,8 +77,22 @@ export function calculateTotal(items) {
 
 export function sortByPrice(items, ascending) {
   // Your code here
+
+  if(!Array.isArray(items)) return [];
+  
+  let sort = null;
+  
+  sort = [...items].sort((a, b) => 
+        ascending? a.price - b.price : b.price - a.price);
+
+  return sort;
 }
 
 export function formatBill(items) {
   // Your code here
+  if(!Array.isArray(items) || items.length === 0) return "";
+
+  return items
+          .map(item => item.name + " x " + item.qty + " = Rs." + (item.price*item.qty))
+          .join("\n");
 }
