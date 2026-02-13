@@ -54,6 +54,21 @@
  */
 export function createThaliDescription(thali) {
   // Your code here
+
+  if(typeof thali === "object" || thali === null) return "";
+
+  if(typeof thali.name !== "string" ||
+    !Array.isArray(thali.items) ||
+    typeof thali.price !== "number"||
+    typeof thali.isVeg !== "boolean"
+  ) return "";
+
+  let name = thali.name.toUpperCase();
+  let price = thali.price.toFixed(2);
+  let isVeg = (thali.isVeg)? "Veg":"Non-Veg";
+  let items = thali.join(",");
+
+  return `${name} (${isVeg} - Items: ${items} - Rs.${price}`;
 }
 
 export function getThaliStats(thalis) {
