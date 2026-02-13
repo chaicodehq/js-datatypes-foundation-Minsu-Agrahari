@@ -54,20 +54,45 @@
  */
 export function getFamilyNames(registry) {
   // Your code here
+  if(typeof registry !== "object" || registry === null) return [];
+
+  return Object.keys(registry);
 }
 
 export function getAllFamilies(registry) {
   // Your code here
+
+  if(typeof registry !== "object" || registry === null || Object.keys(registry).length === 0) return [];
+
+  return Object.values(registry);
 }
 
+// ==> null wala condition nhi likh hua hai question me
 export function getRationCardEntries(registry) {
   // Your code here
+
+  if(registry === null || typeof registry !== "object" || Object.keys(registry).length === 0) return [];
+
+  return Object.entries(registry);
 }
 
 export function hasRationCard(registry, cardId) {
   // Your code here
+
+  if(registry === null || typeof registry !== "object" || typeof cardId !== "string") return false;
+
+  return registry.hasOwnProperty(cardId);
 }
 
 export function removeRationCard(registry, cardId) {
   // Your code here
+
+  if(typeof registry !== "object" || typeof cardId !== "string") return false;
+
+  if(registry.hasOwnProperty(cardId)){
+    delete registry[cardId];
+    return true;
+  }
+
+  return false;
 }
